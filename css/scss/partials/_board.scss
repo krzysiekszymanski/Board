@@ -18,11 +18,15 @@
     -moz-box-shadow: 0px 0px 4px 0px rgba(172,172,172,0.5);
     box-shadow: 0px 0px 4px 0px rgba(172,172,172,0.5);
     a {
+      display: block;
+      margin: 25px 0px 34px 20px;
       font-size: 1.4rem;
       color: $main-orange;
       line-height: 18px;
       span {
-        @extend a;
+        font-size: 1.4rem;
+        color: $main-orange;
+        line-height: 18px;
       }
     }
     .comments {
@@ -31,10 +35,42 @@
       overflow-x: hidden;
       ul {
         li {
-          height: 120px;
+
           list-style: none;
         }
       }
+    }
+  }
+}
+.coments {
+  margin-top: 20px;
+  border-bottom: 1px solid #ebebeb;
+  .row{
+    display: flex;
+    img {
+      margin-left: 20px;
+      width: 40px;
+      height: 40px;
+    }
+    div {
+      span{
+        margin-left: 20px;
+        line-height: 40px;
+        font-size: 1.4rem;
+        color: $header-color;
+      }
+      p {
+        margin: 0 0 25px 20px;
+        width: 333px;
+        min-height: 84px;
+        font-size: 1.4rem;
+      }
+    }
+    span{
+      color: rgba(0, 44, 113, 0.5);
+      margin-left: 0;
+      font-size: 1.4rem;
+      line-height: 40px;
     }
   }
 }

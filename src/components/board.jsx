@@ -1,4 +1,5 @@
 import React from 'react';
+import Comment from './coment.jsx';
 
      class Board extends React.Component {
         render() {
@@ -8,14 +9,21 @@ import React from 'react';
                         <a href="#">Hide comments <span>(353)</span></a>
                         <div className={"comments"}>
                             <ul>
-                                <li>1</li>
-                                <li>2</li>
-                                <li>3</li>
-                                <li>4</li>
-                                <li>5</li>
-                                <li>6</li>
+                                <li>
+                                    <Comment />
+                                </li>
+                                <li>
+                                    <Comment />
+                                </li>
+                                <li>
+                                    <Comment />
+                                </li>
+                                <li>
+                                    <Comment />
+                                </li>
                             </ul>
                         </div>
+                        <input type="text"/>
                     </div>
                 </section>
             )
