@@ -22148,10 +22148,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Index = function (_React$Component) {
     _inherits(Index, _React$Component);
 
-    function Index() {
+    function Index(props) {
         _classCallCheck(this, Index);
 
-        return _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).call(this, props));
+
+        _this.state = {
+            data: "null"
+
+        };
+        return _this;
     }
 
     _createClass(Index, [{
@@ -22164,6 +22170,34 @@ var Index = function (_React$Component) {
                 _react2.default.createElement(_board2.default, null)
             );
         }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            // let myInit = {
+            //     method: 'POST',
+            //
+            //     body: JSON.stringify({
+            //         statistic: 'yourValue',
+            //         secondParam: 'yourOtherValue',
+            //     })
+            // };
+
+            fetch('http://localhost:3001/db/db.json').then(function (resp) {
+                return resp.json();
+            }).then(function (value) {
+                console.log(value);
+                _this2.setState({
+                    data: value
+                });
+            }).catch(function (err) {
+                console.log('Błąd!', err);
+            });
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {}
     }]);
 
     return Index;
@@ -22199,10 +22233,28 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Header = function (_React$Component) {
     _inherits(Header, _React$Component);
 
-    function Header() {
+    function Header(props) {
         _classCallCheck(this, Header);
 
-        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
+
+        _this.clickLike = function () {
+            _this.setState({
+                like: _this.state.like + 1
+            });
+        };
+
+        _this.clickFallowers = function () {
+            _this.setState({
+                fallowers: _this.state.fallowers + 1
+            });
+        };
+
+        _this.state = {
+            like: 0,
+            fallowers: 0
+        };
+        return _this;
     }
 
     _createClass(Header, [{
@@ -22225,7 +22277,7 @@ var Header = function (_React$Component) {
                                 "p",
                                 null,
                                 "Harvey Spectra ",
-                                _react2.default.createElement("span", null)
+                                _react2.default.createElement("span", { onClick: this.clickLike })
                             ),
                             _react2.default.createElement(
                                 "p",
@@ -22243,7 +22295,7 @@ var Header = function (_React$Component) {
                             _react2.default.createElement(
                                 "span",
                                 null,
-                                "10"
+                                this.state.like
                             ),
                             _react2.default.createElement(
                                 "p",
@@ -22271,7 +22323,7 @@ var Header = function (_React$Component) {
                             _react2.default.createElement(
                                 "span",
                                 null,
-                                "20"
+                                this.state.fallowers
                             ),
                             _react2.default.createElement(
                                 "p",
@@ -22284,7 +22336,7 @@ var Header = function (_React$Component) {
                             { className: "col" },
                             _react2.default.createElement(
                                 "a",
-                                { href: "#" },
+                                { onClick: this.clickFallowers },
                                 "fallow"
                             )
                         )
@@ -22331,15 +22383,64 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Board = function (_React$Component) {
     _inherits(Board, _React$Component);
 
-    function Board() {
+    function Board(props) {
         _classCallCheck(this, Board);
 
-        return _possibleConstructorReturn(this, (Board.__proto__ || Object.getPrototypeOf(Board)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Board.__proto__ || Object.getPrototypeOf(Board)).call(this, props));
+
+        _this.handleName = function (event) {
+            _this.setState({
+                name: event.target.value
+            });
+        };
+
+        _this.handleDate = function (event) {
+            _this.setState({
+                date: event.target.value
+            });
+        };
+
+        _this.handleText = function (event) {
+            _this.setState({
+                text: event.target.value
+            });
+        };
+
+        _this.sendForm = function (event) {
+            event.preventDefault();
+
+            var comments = _this.state.comments.slice();
+
+            comments.push({ name: _this.state.name, date: _this.state.date, text: _this.state.text });
+            _this.setState({
+                comments: comments,
+                name: '',
+                date: '',
+                text: ''
+            });
+        };
+
+        _this.state = {
+            name: '',
+            date: '',
+            text: '',
+            comments: []
+        };
+        return _this;
     }
 
     _createClass(Board, [{
         key: 'render',
         value: function render() {
+            var list = this.state.comments.map(function (i) {
+                return _react2.default.createElement(
+                    'li',
+                    null,
+                    ' ',
+                    _react2.default.createElement(_coment2.default, i),
+                    ' '
+                );
+            });
             return _react2.default.createElement(
                 'section',
                 { className: "board" },
@@ -22362,29 +22463,24 @@ var Board = function (_React$Component) {
                         _react2.default.createElement(
                             'ul',
                             null,
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                _react2.default.createElement(_coment2.default, null)
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                _react2.default.createElement(_coment2.default, null)
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                _react2.default.createElement(_coment2.default, null)
-                            ),
-                            _react2.default.createElement(
-                                'li',
-                                null,
-                                _react2.default.createElement(_coment2.default, null)
-                            )
+                            list
                         )
                     ),
-                    _react2.default.createElement('input', { type: 'text' })
+                    _react2.default.createElement(
+                        'form',
+                        null,
+                        _react2.default.createElement('input', { type: 'text', placeholder: 'Add a name', value: this.state.name, id: "name",
+                            onChange: this.handleName }),
+                        _react2.default.createElement('input', { type: 'date', id: "date", value: this.state.date,
+                            onChange: this.handleDate }),
+                        _react2.default.createElement('input', { type: 'text', placeholder: 'Add a comment', value: this.state.text, id: "coment",
+                            onChange: this.handleText }),
+                        _react2.default.createElement(
+                            'button',
+                            { onClick: this.sendForm },
+                            'Wy\u015Blij'
+                        )
+                    )
                 )
             );
         }
@@ -22445,18 +22541,19 @@ var Comment = function (_React$Component) {
                         _react2.default.createElement(
                             "span",
                             null,
-                            "Mike Ross"
+                            this.props.name
                         ),
                         _react2.default.createElement(
                             "p",
                             null,
-                            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem illum labore nisi quod unde. Aliquam aliquid delectus eum facere, illum itaque iusto nihil non odit officiis porro quasi quia voluptatibus.s"
+                            " ",
+                            this.props.text
                         )
                     ),
                     _react2.default.createElement(
                         "span",
                         null,
-                        "1d"
+                        this.props.date
                     )
                 )
             );
