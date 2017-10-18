@@ -1,7 +1,7 @@
 {
   "statistic": {
-    "like": 0,
-    "fallowers": 0
+    "like": 2,
+    "fallowers": 3
   },
   "comments": [
     {
@@ -15,9 +15,24 @@
       "date": "0022-02-12",
       "text": "dfsffs",
       "id": 1
+    },
+    {
+      "name": "fadsfdsa",
+      "date": "2020-01-01",
+      "text": "fdasf",
+      "id": 2
+    },
+    {
+      "name": "adff",
+      "date": "2002-02-12",
+      "text": "dsad",
+      "id": 3
+    },
+    {
+      "name": "Krzysiek",
+      "date": "2020-02-12",
+      "text": "fdafa",
+      "id": 4
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

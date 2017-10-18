@@ -5,15 +5,17 @@ import React from 'react';
             super(props);
 
             this.state = {
-                like: 0,
-                fallowers: 0,
+                like: this.props.statistic.like,
+                fallowers: this.props.statistic.fallowers,
             }
         }
         clickLike = () => {
+
+            const l = this.state.like +1;
             this.setState({
-                like: this.state.like + 1,
+                like:  l,
             });
-            const likes = {like: this.state.like};
+            const likes = {like: l};
             fetch('http://localhost:3000/statistic', {
                 method : 'PATCH',
                 headers: {
@@ -31,10 +33,12 @@ import React from 'react';
         }
 
         clickFallowers = () => {
+
+            const r = this.state.fallowers +1;
             this.setState({
-                fallowers: this.state.fallowers + 1,
+                fallowers: r,
             });
-            const fallowers = {fallowers: this.state.fallowers};
+            const fallowers = {fallowers: r};
             fetch('http://localhost:3000/statistic', {
                 method : 'PATCH',
                 headers: {

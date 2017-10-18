@@ -22154,8 +22154,7 @@ var Index = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).call(this, props));
 
         _this.state = {
-            data: "null"
-
+            data: null
         };
         return _this;
     }
@@ -22163,16 +22162,37 @@ var Index = function (_React$Component) {
     _createClass(Index, [{
         key: 'render',
         value: function render() {
+            if (!this.state.data) {
+                return _react2.default.createElement(
+                    'div',
+                    { className: "spinner loader" },
+                    'Wczytuj\u0119 stron\u0119'
+                );
+            }
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(_header2.default, null),
-                _react2.default.createElement(_board2.default, null)
+                _react2.default.createElement(_header2.default, { statistic: this.state.data.statistic }),
+                _react2.default.createElement(_board2.default, { comments: this.state.data.comments })
             );
         }
     }, {
         key: 'componentDidMount',
-        value: function componentDidMount() {}
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            fetch('http://localhost:3000/db').then(function (resp) {
+                return resp.json(); // jaki rodzaj pliku powinno zwrocic API
+            }).then(function (value) {
+                // value nazwa której przypisałem to co zwraca API
+
+                setTimeout(function () {
+                    _this2.setState({ data: value });
+                }, 3000);
+            }).catch(function (err) {
+                console.log('Błąd!', err);
+            });
+        }
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {}
@@ -22217,10 +22237,12 @@ var Header = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
 
         _this.clickLike = function () {
+
+            var l = _this.state.like + 1;
             _this.setState({
-                like: _this.state.like + 1
+                like: l
             });
-            var likes = { like: _this.state.like };
+            var likes = { like: l };
             fetch('http://localhost:3000/statistic', {
                 method: 'PATCH',
                 headers: {
@@ -22237,10 +22259,12 @@ var Header = function (_React$Component) {
         };
 
         _this.clickFallowers = function () {
+
+            var r = _this.state.fallowers + 1;
             _this.setState({
-                fallowers: _this.state.fallowers + 1
+                fallowers: r
             });
-            var fallowers = { fallowers: _this.state.fallowers };
+            var fallowers = { fallowers: r };
             fetch('http://localhost:3000/statistic', {
                 method: 'PATCH',
                 headers: {
@@ -22257,8 +22281,8 @@ var Header = function (_React$Component) {
         };
 
         _this.state = {
-            like: 0,
-            fallowers: 0
+            like: _this.props.statistic.like,
+            fallowers: _this.props.statistic.fallowers
         };
         return _this;
     }
@@ -22445,23 +22469,37 @@ var Board = function (_React$Component) {
             name: '',
             date: '',
             text: '',
-            comments: []
+            comments: _this.props.comments
         };
         return _this;
     }
 
     _createClass(Board, [{
-        key: 'render',
-        value: function render() {
-            var list = this.state.comments.map(function (i) {
-                return _react2.default.createElement(
+        key: 'loadComents',
+        value: function loadComents() {
+            var list = void 0;
+            if (this.state.comments.length > 0) {
+                list = this.state.comments.map(function (i) {
+                    return _react2.default.createElement(
+                        'li',
+                        null,
+                        ' ',
+                        _react2.default.createElement(_coment2.default, i),
+                        ' '
+                    );
+                });
+            } else {
+                list = [_react2.default.createElement(
                     'li',
                     null,
-                    ' ',
-                    _react2.default.createElement(_coment2.default, i),
-                    ' '
-                );
-            });
+                    'brak komentarzy'
+                )];
+            }
+            return list;
+        }
+    }, {
+        key: 'render',
+        value: function render() {
             return _react2.default.createElement(
                 'section',
                 { className: "board" },
@@ -22484,7 +22522,7 @@ var Board = function (_React$Component) {
                         _react2.default.createElement(
                             'ul',
                             null,
-                            list
+                            this.loadComents()
                         )
                     ),
                     _react2.default.createElement(

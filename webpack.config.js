@@ -29,7 +29,7 @@ module.exports = {
                 exclude: /node_modules/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                        use: ['css-loader', 'resolve-url-loader' ,'sass-loader?sourceMap=true', ]
+                        use: ['css-loader','postcss-loader', 'resolve-url-loader' ,'sass-loader?sourceMap=true', ]
                 })
 
             },

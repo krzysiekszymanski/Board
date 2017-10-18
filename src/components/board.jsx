@@ -9,9 +9,10 @@ import Comment from './coment.jsx';
                  name: '',
                  date: '',
                  text: '',
-                 comments: [],
+                 comments: this.props.comments,
              }
          }
+
          handleName = (event) => {
              this.setState({
                  name: event.target.value,
@@ -55,19 +56,28 @@ import Comment from './coment.jsx';
                     }).catch( err => {
                     console.log( err );
                     });
-         }
 
+         }
+         loadComents() {
+             let list;
+             if (this.state.comments.length > 0 ){
+                 list = this.state.comments.map(i =>{
+                    return <li> <Comment {...i} /> </li>
+                 })
+             } else {
+                 list = [<li>brak komentarzy</li>]
+
+             }
+             return list
+         }
         render() {
-            const list = this.state.comments.map(i =>{
-                return <li> <Comment {...i} /> </li>
-            })
             return (
                 <section className={"board"}>
                     <div className={"boardContent"}>
                         <a href="#">Hide comments <span>(353)</span></a>
                         <div className={"comments"}>
                             <ul>
-                                {list}
+                                {this.loadComents()}
                             </ul>
                         </div>
                         <form>
