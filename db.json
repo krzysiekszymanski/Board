@@ -1,0 +1,23 @@
+{
+  "statistic": {
+    "like": 0,
+    "fallowers": 0
+  },
+  "comments": [
+    {
+      "name": "fgsgf",
+      "date": "0122-02-11",
+      "text": "dfaf",
+      "id": 1
+    },
+    {
+      "name": "13reqr",
+      "date": "0022-02-12",
+      "text": "dfsffs",
+      "id": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

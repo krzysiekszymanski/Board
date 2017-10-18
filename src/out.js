@@ -22172,29 +22172,7 @@ var Index = function (_React$Component) {
         }
     }, {
         key: 'componentDidMount',
-        value: function componentDidMount() {
-            var _this2 = this;
-
-            // let myInit = {
-            //     method: 'POST',
-            //
-            //     body: JSON.stringify({
-            //         statistic: 'yourValue',
-            //         secondParam: 'yourOtherValue',
-            //     })
-            // };
-
-            fetch('http://localhost:3001/db/db.json').then(function (resp) {
-                return resp.json();
-            }).then(function (value) {
-                console.log(value);
-                _this2.setState({
-                    data: value
-                });
-            }).catch(function (err) {
-                console.log('Błąd!', err);
-            });
-        }
+        value: function componentDidMount() {}
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {}
@@ -22242,11 +22220,39 @@ var Header = function (_React$Component) {
             _this.setState({
                 like: _this.state.like + 1
             });
+            var likes = { like: _this.state.like };
+            fetch('http://localhost:3000/statistic', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(likes)
+            }).then(function (r) {
+                return r.json();
+            }).then(function (data) {
+                console.log(data);
+            }).catch(function (err) {
+                console.log(err);
+            });
         };
 
         _this.clickFallowers = function () {
             _this.setState({
                 fallowers: _this.state.fallowers + 1
+            });
+            var fallowers = { fallowers: _this.state.fallowers };
+            fetch('http://localhost:3000/statistic', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(fallowers)
+            }).then(function (r) {
+                return r.json();
+            }).then(function (data) {
+                console.log(data);
+            }).catch(function (err) {
+                console.log(err);
             });
         };
 
@@ -22258,86 +22264,86 @@ var Header = function (_React$Component) {
     }
 
     _createClass(Header, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                "section",
+                'section',
                 { className: "header" },
                 _react2.default.createElement(
-                    "div",
+                    'div',
                     { className: "headerContent container" },
                     _react2.default.createElement(
-                        "div",
+                        'div',
                         { className: "personalDate row" },
-                        _react2.default.createElement("img", { src: "./images/face.png", alt: "face" }),
+                        _react2.default.createElement('img', { src: "./images/face.png", alt: 'face' }),
                         _react2.default.createElement(
-                            "div",
+                            'div',
                             { className: "Name" },
                             _react2.default.createElement(
-                                "p",
+                                'p',
                                 null,
-                                "Harvey Spectra ",
-                                _react2.default.createElement("span", { onClick: this.clickLike })
+                                'Harvey Spectra ',
+                                _react2.default.createElement('span', { onClick: this.clickLike })
                             ),
                             _react2.default.createElement(
-                                "p",
+                                'p',
                                 null,
-                                "New York, USA"
+                                'New York, USA'
                             )
                         )
                     ),
                     _react2.default.createElement(
-                        "div",
+                        'div',
                         { className: "statistic row" },
                         _react2.default.createElement(
-                            "div",
+                            'div',
                             { className: "col" },
                             _react2.default.createElement(
-                                "span",
+                                'span',
                                 null,
                                 this.state.like
                             ),
                             _react2.default.createElement(
-                                "p",
+                                'p',
                                 null,
-                                "Likes"
+                                'Likes'
                             )
                         ),
                         _react2.default.createElement(
-                            "div",
+                            'div',
                             { className: "col" },
                             _react2.default.createElement(
-                                "span",
+                                'span',
                                 null,
-                                "15"
+                                '15'
                             ),
                             _react2.default.createElement(
-                                "p",
+                                'p',
                                 null,
-                                "Following"
+                                'Following'
                             )
                         ),
                         _react2.default.createElement(
-                            "div",
+                            'div',
                             { className: "col" },
                             _react2.default.createElement(
-                                "span",
+                                'span',
                                 null,
                                 this.state.fallowers
                             ),
                             _react2.default.createElement(
-                                "p",
+                                'p',
                                 null,
-                                "Followers"
+                                'Followers'
                             )
                         ),
                         _react2.default.createElement(
-                            "div",
+                            'div',
                             { className: "col" },
                             _react2.default.createElement(
-                                "a",
+                                'a',
                                 { onClick: this.clickFallowers },
-                                "fallow"
+                                'fallow'
                             )
                         )
                     )
@@ -22410,13 +22416,28 @@ var Board = function (_React$Component) {
             event.preventDefault();
 
             var comments = _this.state.comments.slice();
+            var obj = { name: _this.state.name, date: _this.state.date, text: _this.state.text };
 
-            comments.push({ name: _this.state.name, date: _this.state.date, text: _this.state.text });
+            comments.push(obj);
             _this.setState({
                 comments: comments,
                 name: '',
                 date: '',
                 text: ''
+            });
+
+            fetch('http://localhost:3000/comments', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(obj)
+            }).then(function (r) {
+                return r.json();
+            }).then(function (data) {
+                console.log(data);
+            }).catch(function (err) {
+                console.log(err);
             });
         };
 

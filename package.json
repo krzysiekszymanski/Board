@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "wp": "./node_modules/.bin/webpack",
-    "serv": "./node_modules/.bin/webpack-dev-server --hot"
+    "serv": "./node_modules/.bin/webpack-dev-server --hot",
+    "json-serv": "json-server --watch db.json"
   },
   "author": "krzysiek",
   "license": "ISC",

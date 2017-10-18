@@ -33,14 +33,28 @@ import Comment from './coment.jsx';
              event.preventDefault()
 
              const comments = this.state.comments.slice();
+             const obj ={name: this.state.name, date: this.state.date,text: this.state.text}
 
-             comments.push({name: this.state.name, date: this.state.date,text: this.state.text})
+             comments.push(obj)
              this.setState({
                  comments: comments,
                  name: '',
                  date: '',
                  text: '',
              })
+
+             fetch('http://localhost:3000/comments', {
+                 method : 'POST',
+                 headers: {
+                     'Content-Type': 'application/json'
+                 },
+                 body: JSON.stringify(obj)
+                }).then(r => r.json())
+                    .then( data => {
+                    console.log( data );
+                    }).catch( err => {
+                    console.log( err );
+                    });
          }
 
         render() {

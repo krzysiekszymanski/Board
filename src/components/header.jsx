@@ -13,12 +13,42 @@ import React from 'react';
             this.setState({
                 like: this.state.like + 1,
             });
+            const likes = {like: this.state.like};
+            fetch('http://localhost:3000/statistic', {
+                method : 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(likes)
+            }).then(r => r.json())
+                .then( data => {
+                    console.log( data );
+                }).catch( err => {
+                console.log( err );
+            });
+
+
         }
 
         clickFallowers = () => {
             this.setState({
                 fallowers: this.state.fallowers + 1,
             });
+            const fallowers = {fallowers: this.state.fallowers};
+            fetch('http://localhost:3000/statistic', {
+                method : 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(fallowers)
+            }).then(r => r.json())
+                .then( data => {
+                    console.log( data );
+                }).catch( err => {
+                console.log( err );
+            });
+
+
         }
 
         render() {

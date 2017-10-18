@@ -2,10 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Index from "./index.jsx";
 
-
-
 document.addEventListener('DOMContentLoaded', function(){
-
 
     class App extends React.Component {
         render() {
