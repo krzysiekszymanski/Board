@@ -35,6 +35,8 @@ import Comment from './coment.jsx';
 
              const comments = this.state.comments.slice();
              const obj ={name: this.state.name, date: this.state.date,text: this.state.text}
+                console.log(obj)
+
 
              comments.push(obj)
              this.setState({
@@ -61,20 +63,28 @@ import Comment from './coment.jsx';
          loadComents() {
              let list;
              if (this.state.comments.length > 0 ){
-                 list = this.state.comments.map(i =>{
+                 const comments = this.state.comments.slice()
+                 comments.sort( (a ,b) => {
+                    return new Date(b.date).getTime() - new Date(a.date).getTime()
+                 })
+
+                 list = comments.map(i =>{
                     return <li> <Comment {...i} /> </li>
                  })
              } else {
                  list = [<li>brak komentarzy</li>]
-
              }
+
              return list
          }
+
+
         render() {
+            console.log(this.state.comments)
             return (
                 <section className={"board"}>
                     <div className={"boardContent"}>
-                        <a href="#">Hide comments <span>(353)</span></a>
+                        <a href="#">Hide comments <span>{(this.props.comments.length)}</span></a>
                         <div className={"comments"}>
                             <ul>
                                 {this.loadComents()}

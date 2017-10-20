@@ -13,7 +13,7 @@ import Board from './components/board.jsx';
 
         render() {
            if(!this.state.data) {
-            return <div className={"spinner loader"}>Wczytuję stronę</div>
+            return <div className={"spinner loader"}><p>Loading...</p></div>
            }
             return (
                 <div>
@@ -30,7 +30,7 @@ import Board from './components/board.jsx';
 
                 setTimeout(() => {
                     this.setState({ data:value });
-                }, 3000);
+                }, 300);
 
             }).catch( err => {
                 console.log('Błąd!', err);
@@ -38,7 +38,7 @@ import Board from './components/board.jsx';
         }
 
         componentWillUnmount() {
-
+            fetch()
         }
 
 

@@ -79,7 +79,7 @@ import React from 'react';
                                 <span>{this.state.fallowers}</span>
                                 <p>Followers</p>
                             </div>
-                            <div className={"col"}>
+                              <div className={"col"}>
                                 <a onClick={this.clickFallowers}>fallow</a>
                             </div>
                         </div>

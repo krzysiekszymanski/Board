@@ -1,3 +1,5 @@
+
+
 .header {
   display: flex;
   justify-content: center;
@@ -89,4 +91,30 @@
       }
 
     }
+}
+
+@media only screen and (max-width: 500px) {
+  .header{
+    width: 320px;
+    .headerContent {
+      width: 283px;
+      height: 235px;
+      .personalDate {
+        justify-content: center;
+        img {
+          position: absolute;
+          margin: 0 auto;
+    	  top: -36px;
+    	  border-radius: 50%;
+        }
+      }
+      .statistic {
+        flex-wrap: wrap;
+        justify-content: center;
+        a {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
 }

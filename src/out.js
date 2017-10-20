@@ -22166,7 +22166,11 @@ var Index = function (_React$Component) {
                 return _react2.default.createElement(
                     'div',
                     { className: "spinner loader" },
-                    'Wczytuj\u0119 stron\u0119'
+                    _react2.default.createElement(
+                        'p',
+                        null,
+                        'Loading...'
+                    )
                 );
             }
             return _react2.default.createElement(
@@ -22188,14 +22192,16 @@ var Index = function (_React$Component) {
 
                 setTimeout(function () {
                     _this2.setState({ data: value });
-                }, 3000);
+                }, 300);
             }).catch(function (err) {
                 console.log('Błąd!', err);
             });
         }
     }, {
         key: 'componentWillUnmount',
-        value: function componentWillUnmount() {}
+        value: function componentWillUnmount() {
+            fetch();
+        }
     }]);
 
     return Index;
@@ -22441,6 +22447,7 @@ var Board = function (_React$Component) {
 
             var comments = _this.state.comments.slice();
             var obj = { name: _this.state.name, date: _this.state.date, text: _this.state.text };
+            console.log(obj);
 
             comments.push(obj);
             _this.setState({
@@ -22479,7 +22486,12 @@ var Board = function (_React$Component) {
         value: function loadComents() {
             var list = void 0;
             if (this.state.comments.length > 0) {
-                list = this.state.comments.map(function (i) {
+                var comments = this.state.comments.slice();
+                comments.sort(function (a, b) {
+                    return new Date(b.date).getTime() - new Date(a.date).getTime();
+                });
+
+                list = comments.map(function (i) {
                     return _react2.default.createElement(
                         'li',
                         null,
@@ -22495,11 +22507,13 @@ var Board = function (_React$Component) {
                     'brak komentarzy'
                 )];
             }
+
             return list;
         }
     }, {
         key: 'render',
         value: function render() {
+            console.log(this.state.comments);
             return _react2.default.createElement(
                 'section',
                 { className: "board" },
@@ -22513,7 +22527,7 @@ var Board = function (_React$Component) {
                         _react2.default.createElement(
                             'span',
                             null,
-                            '(353)'
+                            this.props.comments.length
                         )
                     ),
                     _react2.default.createElement(

@@ -12,7 +12,7 @@
     position: absolute;
     top: 225px;
     width: 466px;
-    height: 674px;
+    height: 774px;
     background-color: white;
     -webkit-box-shadow: 0px 0px 4px 0px rgba(172,172,172,0.5);
     -moz-box-shadow: 0px 0px 4px 0px rgba(172,172,172,0.5);
@@ -40,7 +40,24 @@
         }
       }
     }
-      form{margin-top: 30px}
+      form{margin-top: 30px;
+        button {
+          margin: 0 auto;
+          text-decoration: none;
+          display: block;
+          text-align: center;
+          color: white;
+          height: 46px;
+          width: 134px;
+          font-size: 1.4rem;
+          line-height: 4.6rem;
+          font-weight: 700;
+          letter-spacing: 4.2px;
+          background-color: #FFA640;
+          border-radius: 100px;
+          text-transform: uppercase;
+        }
+      }
       input {
         margin-top: 10px;
         margin-left: 10px;
@@ -62,7 +79,8 @@
       color: orange;
     }
       #coment {
-        width: 413px;
+        width: 283px;
+        margin-bottom: 20px;
       }
 
 
@@ -97,6 +115,62 @@
       margin-left: 0;
       font-size: 1.4rem;
       line-height: 40px;
+    }
+  }
+}
+@media only screen and (max-width: 500px) {
+ .board {
+   width: 284px;
+   height: 591px;
+   .boardContent {
+     width: 284px;
+     height: 543px;
+     a {
+       text-align: center;
+     }
+     #name{
+       width: 100%;
+     }
+     #date {
+       width: 100%;
+     }
+     #coment {
+       width: 100%;
+     }
+
+   }
+ }
+
+  .coments {
+    margin-top: 10px;
+    border-bottom: 1px solid #ebebeb;
+    .row{
+      display: flex;
+      img {
+        margin-left: 10px;
+        width: 25px;
+        height: 25px;
+      }
+      div {
+        span{
+          margin-left: 10px;
+          line-height: 20px;
+          font-size: 1.2rem;
+          color: $header-color;
+        }
+        p {
+          margin: 0 0 10px 10px;
+          width: 177px;
+          min-height: 54px;
+          font-size: 1.2rem;
+        }
+      }
+      span{
+        color: rgba(0, 44, 113, 0.5);
+        margin-left: 0;
+        font-size: 1rem;
+        line-height: 20px;
+      }
     }
   }
 }
