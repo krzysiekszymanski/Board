@@ -30,7 +30,7 @@ import Board from './components/board.jsx';
 
                 setTimeout(() => {
                     this.setState({ data:value });
-                }, 300);
+                }, 2000);
 
             }).catch( err => {
                 console.log('Błąd!', err);

@@ -1,7 +1,7 @@
 {
   "statistic": {
-    "like": 2,
-    "fallowers": 3
+    "like": 6,
+    "fallowers": 11
   },
   "comments": [
     {
@@ -45,6 +45,18 @@
       "date": "2017-03-02",
       "text": "fdfsa",
       "id": 6
+    },
+    {
+      "name": "Krzysiek",
+      "date": "2030-04-12",
+      "text": "fmdhfk;ajfh;dfjafmafd",
+      "id": 7
+    },
+    {
+      "name": "fsdfdsa",
+      "date": "2022-03-12",
+      "text": "fdasfdas",
+      "id": 8
     }
   ]
 }

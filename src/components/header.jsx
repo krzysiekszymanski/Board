@@ -80,7 +80,7 @@ import React from 'react';
                                 <p>Followers</p>
                             </div>
                               <div className={"col"}>
-                                <a onClick={this.clickFallowers}>fallow</a>
+                                <a onClick={this.clickFallowers}>follow</a>
                             </div>
                         </div>
                     </div>

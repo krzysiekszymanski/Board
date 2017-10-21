@@ -22192,7 +22192,7 @@ var Index = function (_React$Component) {
 
                 setTimeout(function () {
                     _this2.setState({ data: value });
-                }, 300);
+                }, 2000);
             }).catch(function (err) {
                 console.log('Błąd!', err);
             });
@@ -22373,7 +22373,7 @@ var Header = function (_React$Component) {
                             _react2.default.createElement(
                                 'a',
                                 { onClick: this.clickFallowers },
-                                'fallow'
+                                'follow'
                             )
                         )
                     )
